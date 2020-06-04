@@ -24,7 +24,8 @@ drowsiness detection
    - To detect and localize facial landmarks we’ll need the dlib library
 
 
-# installation of Dlib libary 
+# installation of Dlib libary
+# 不要理以下步驟，沒用，直接 pip install dlib就好
 These instructions assume you are on macOS, but basically the same on Linux.
 
 Pre-reqs:
