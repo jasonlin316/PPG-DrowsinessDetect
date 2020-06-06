@@ -272,8 +272,8 @@ class getPulseApp(object):
                         t.start()
                     '''
                 # draw an alarm on the frame
-                cv2.putText(frame, "DROWSINESS ALERT!", (10, 30),
-                    cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
+                cv2.putText(frame, "DROWSINESS ALERT!", (400, 180),
+                    cv2.FONT_HERSHEY_SIMPLEX, 1.5 , (0, 0, 255), 2)
 
         # otherwise, the eye aspect ratio is not below the blink
         # threshold, so reset the self.counter and alarm
@@ -284,8 +284,8 @@ class getPulseApp(object):
         # draw the computed eye aspect ratio on the frame to help
         # with debugging and setting the correct eye aspect ratio
         # thresholds and frame counters
-        cv2.putText(frame, "EAR: {:.2f}".format(ear), (300, 30),
-            cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
+        cv2.putText(frame, "EAR: {:.2f}".format(ear), (500, 40),
+            cv2.FONT_HERSHEY_SIMPLEX, 1.2 , (0, 0, 255), 2)
 
     def main_loop(self):
         """
