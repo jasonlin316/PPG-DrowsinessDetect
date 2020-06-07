@@ -20,6 +20,12 @@ import time
 import dlib
 import cv2
 
+import serial
+COM_PORT = '/dev/cu.usbserial-14510'  # 請自行修改序列埠名稱
+BAUD_RATES = 9600
+ser = serial.Serial(COM_PORT, BAUD_RATES)
+
+
 def sound_alarm(path):
 	# play an alarm sound
 	music = pyglet.resource.media('alarm.wav')
@@ -55,7 +61,7 @@ class getPulseApp(object):
     # blink and then a second constant for the number of consecutive
     # frames the eye must be below the threshold for to set off the
     # alarm
-    EYE_AR_THRESH = 0.24
+    EYE_AR_THRESH = 0.20
     EYE_AR_CONSEC_FRAMES = 30
 
     # initialize the frame counter as well as a boolean used to
@@ -271,6 +277,7 @@ class getPulseApp(object):
                         t.deamon = True
                         t.start()
                     '''
+                ser.write(b'a')
                 # draw an alarm on the frame
                 cv2.putText(frame, "DROWSINESS ALERT!", (400, 180),
                     cv2.FONT_HERSHEY_SIMPLEX, 1.5 , (0, 0, 255), 2)
@@ -344,6 +351,9 @@ if __name__ == "__main__":
         help="index of webcam on system")
     args = vars(ap.parse_args())
     
+    try:
+        while True:
+            App.main_loop()
+    except(KeyboardInterrupt):
+        serial.close()
 
-    while True:
-        App.main_loop()
